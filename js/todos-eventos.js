@@ -1,4 +1,6 @@
-const criarEstruturaEvento = (
+formatarData()
+
+const criarEstruturaTodosEventos = (
     nomeEvento,
     dataEvento,
     atracaoEvento,
@@ -6,7 +8,8 @@ const criarEstruturaEvento = (
     indexBotao,
     idEvento
 ) => {
-    const divEventos = document.querySelector("body > main > section:nth-child(2) > div.container.d-flex.justify-content-center.align-items-center")
+    const divEventos = document.querySelector("body > main > section:nth-child(1) > div.container.d-flex.justify-content-center.align-items-center.flex-wrap")
+    divEventos.setAttribute("id", "lista-eventos")
     const eventoArticle = document.createElement("article")
     eventoArticle.setAttribute("class", "evento card p-5 m-3")
     divEventos.appendChild(eventoArticle)
@@ -27,81 +30,84 @@ const criarEstruturaEvento = (
     botaoEvento.setAttribute("class", "btn btn-primary")
     botaoEvento.setAttribute("id", `botao-reservar${indexBotao}`)
     botaoEvento.setAttribute("idevento", `${idEvento}`)
-    botaoEvento.setAttribute("nomeevento", `${nomeEvento}`)
     botaoEvento.innerHTML = `reservar ingresso`
     eventoArticle.appendChild(botaoEvento)
 }
 
-const listarEventosFazerReserva = async() => {
+const listarEventosFazerReservaTodas = async() => {
 
     await fetch("https://xp41-soundgarden-api.herokuapp.com/events")
         .then(response => response.text())
         .then((data) => JSON.parse(data))
         .then(listaDeEventos => {
-
-            //Ordenando a lista de Eventos
             listaDeEventos.sort((a, b) => {
                 return new Date(a.scheduled) - new Date(b.scheduled);
             });
-            // console.log(listaDeEventos);
 
-
-            //Filtrando a lista de Eventos para retornar apenas que ainda estão por vir
             const eventosFuturos = listaDeEventos.filter((data) => {
                 const agora = new Date();
                 return new Date(data.scheduled) > agora
             });
 
-            //For para resumir os eventos e retornar apenas os 3 primeros da lista de eventos Futuros.
-            //E criá-los na Home com a função Criar Estrutura Evento 
-            for (let index = 0; index < 3; index++) {
+            for (let index = 0; index < eventosFuturos.length; index++) {
                 const evento = eventosFuturos[index];
-                criarEstruturaEvento(
+                criarEstruturaTodosEventos(
                     nomeEvento = evento.name,
                     dataEvento = evento.scheduled,
                     atracaoEvento = evento.attractions,
                     descricaoEvento = evento.description,
                     indexBotao = index,
                     idEvento = evento._id
-
                 )
-                const eventosResumo = {
-                    id: evento._id,
-                    nome: evento.name,
-                    data: evento.scheduled,
-                    atracao: evento.attractions,
-                    data: evento.scheduled,
-                    descricao: evento.description
-                }
-                console.log(eventosResumo);
             }
-            modalReservarIngresso()
         })
-        .catch(error => console.log('error', error));
+
+
+    .catch(error => console.log('error', error));
+}
+
+const abrirEfecharModal = async() => {
+    await listarEventosFazerReservaTodas()
+
+    var modal = document.getElementById("myModal");
+
+    const novaListaEventos = document.getElementsByClassName("evento")
+    const qtdDeEventos = novaListaEventos.length
+
+    for (let index = 0; index < novaListaEventos.length; index++) {
+        var botaoReservar = document.querySelector(`#botao-reservar${index}`)
+        botaoReservar.addEventListener("click", (event) => {
+            event.preventDefault()
+            modal.style.display = "block";
+            const botaoAlvo = event.target
+            const idevento = botaoAlvo.getAttribute("idevento")
+            document.querySelector("#id").value = idevento;
+        })
+    }
+    var botaoFechar = document.getElementById("modal-home-fechar");
+    var botaoCancelar = document.getElementById("modal-home-cancelar");
+
+
+
+    botaoFechar.onclick = function() {
+        modal.style.display = "none";
+        formReservarIngresso[0].value = ""
+        formReservarIngresso[2].value = ""
+        formReservarIngresso[3].value = ""
+    }
+    botaoCancelar.onclick = function() {
+        modal.style.display = "none";
+        formReservarIngresso[0].value = ""
+        formReservarIngresso[2].value = ""
+        formReservarIngresso[3].value = ""
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = ""
+        }
+    }
 
     const formReservarIngresso = document.querySelector("#reserva");
-
-    document.getElementById("botao-reservar0")
-        .addEventListener("click", (event) => {
-            const botaoAlvo = event.target
-            const idevento = botaoAlvo.getAttribute("idevento")
-            document.querySelector("#id").value = idevento;
-        })
-
-    document.getElementById("botao-reservar1")
-        .addEventListener("click", (event) => {
-            const botaoAlvo = event.target
-            const idevento = botaoAlvo.getAttribute("idevento")
-            document.querySelector("#id").value = idevento;
-        })
-
-    document.getElementById("botao-reservar2")
-        .addEventListener("click", (event) => {
-            const botaoAlvo = event.target
-            const idevento = botaoAlvo.getAttribute("idevento")
-
-            document.querySelector("#id").value = idevento;
-        })
 
     const botaoConfirmar = document.querySelector("#myModal > div > div > div.modal-footer > button.btn.btn-primary")
     botaoConfirmar.addEventListener("click", (event) => {
@@ -112,13 +118,6 @@ const listarEventosFazerReserva = async() => {
             number_tickets: formReservarIngresso[1].value,
             event_id: formReservarIngresso[0].value
         }
-
-        // const Exemplo visual de corpo para o POST = {
-        //     owner_name: "Felix",
-        //     owner_email: "email@email.com",
-        //     number_tickets: 1,
-        //     event_id: "6269f95445cb0602abe89dc6"
-        // }
         fetch(`https://xp41-soundgarden-api.herokuapp.com/bookings`, {
                 method: "POST",
                 headers: {
@@ -133,4 +132,9 @@ const listarEventosFazerReserva = async() => {
             .catch(error => console.log('error', error));
     })
 }
-listarEventosFazerReserva()
+
+abrirEfecharModal()
+
+const enviarPedidoReserva = () => {
+
+}

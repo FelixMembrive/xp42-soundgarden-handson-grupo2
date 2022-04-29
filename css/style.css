@@ -1,6 +1,6 @@
- @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-body{
+body {
     font-family: 'Questrial', sans-serif;
 }
 
@@ -11,6 +11,31 @@ header {
     background-color: #fff;
 }
 
+
+aside {
+    min-height: 100vh;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #C2185B;
+}
+
+
+.btn {
+    margin: 1.5px;
+}
+
+
+.btn-primary {
+    background-color: #C2185B;
+    border-color: #C2185B;
+}
+
+main.login {
+    width: 400px;
+}
+
 section.full {
     width: 100%;
     min-height: 80vh;
@@ -19,56 +44,56 @@ section.full {
 
 article.evento {
     width: 350px;
-} 
+}
 
-.btn-primary{
+.btn-primary {
     background-color: #C2185B;
     border-color: #C2185B;
-} 
+}
 
-main .d-flex{
+main .d-flex {
     display: flex;
     justify-content: center;
-} 
+}
 
-/* footer nav ul{
+/* footer nav ul {
     list-style: none;
     display: flex;
-} */
+}
 
-/* footer nav ul li  {
+footer nav ul li {
     padding: 10px;
 } */
 
 
 @media (max-width: 320px) {
-    
 
-    header img{
+
+    header img {
         width: 200px;
     }
 
     section.full {
         min-height: 30vh;
     }
-    
-    section.full .container{
-        display: flex;
-         flex-wrap: wrap;
-        justify-content: center; 
-    } 
 
-    section.full:nth-child(3) > div:nth-child(1) .col {
+    section.full .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    section.full:nth-child(3)>div:nth-child(1) .col {
         width: 280px;
         padding-top: 30px;
     }
 
-    section.full:nth-child(3) > div:nth-child(1) .row {
+    section.full:nth-child(3)>div:nth-child(1) .row {
         display: flex;
         flex-direction: column;
     }
 
-    div.col:nth-child(2) > img:nth-child(1) {
+    div.col:nth-child(2)>img:nth-child(1) {
         display: none;
     }
 
@@ -77,24 +102,24 @@ main .d-flex{
         display: flex;
         justify-content: center;
         align-items: center;
-    } 
+    }
 
     footer .container a img {
         width: 100px;
-    } 
+    }
 
     footer .container nav ul {
         display: flex;
         flex-direction: column;
-    } 
+    }
 
     footer .container nav ul li {
         padding: 5px;
-    } 
-} 
+    }
+}
 
 @media (min-width: 321px) and (max-width: 375px) {
-    header img{
+    header img {
         width: 250px;
     }
 
@@ -102,27 +127,27 @@ main .d-flex{
         min-height: 30vh;
     }
 
-    section.full .text-center h1{
+    section.full .text-center h1 {
         max-width: 300px;
     }
 
-    section.full .container{
+    section.full .container {
         display: flex;
-         flex-wrap: wrap;
-        justify-content: center; 
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    
-    section.full:nth-child(3) > div:nth-child(1) .col {
+
+    section.full:nth-child(3)>div:nth-child(1) .col {
         width: 330px;
         padding-top: 30px;
     }
 
-    section.full:nth-child(3) > div:nth-child(1) .row {
+    section.full:nth-child(3)>div:nth-child(1) .row {
         display: flex;
         flex-direction: column;
     }
-    
-    div.col:nth-child(2) > img:nth-child(1) {
+
+    div.col:nth-child(2)>img:nth-child(1) {
         display: none;
     }
 
@@ -131,7 +156,7 @@ main .d-flex{
         display: flex;
         justify-content: center;
         align-items: center;
-    } 
+    }
 
     footer .container a img {
         width: 130px;
@@ -140,15 +165,15 @@ main .d-flex{
     footer .container nav ul {
         display: flex;
         flex-direction: column;
-    } 
+    }
 
     footer .container nav ul li {
         padding: 5px;
-    } 
+    }
 }
 
 @media (min-width: 376px) and (max-width: 425px) {
-    header img{
+    header img {
         width: 270px;
     }
 
@@ -156,27 +181,27 @@ main .d-flex{
         min-height: 30vh;
     }
 
-    section.full .text-center h1{
+    section.full .text-center h1 {
         max-width: 365px;
     }
 
-    section.full .container{
+    section.full .container {
         display: flex;
-         flex-wrap: wrap;
-        justify-content: center; 
+        flex-wrap: wrap;
+        justify-content: center;
     }
-    
-    section.full:nth-child(3) > div:nth-child(1) .col {
+
+    section.full:nth-child(3)>div:nth-child(1) .col {
         width: 330px;
         padding-top: 30px;
     }
 
-    section.full:nth-child(3) > div:nth-child(1) .row {
+    section.full:nth-child(3)>div:nth-child(1) .row {
         display: flex;
         flex-direction: column;
     }
-    
-    div.col:nth-child(2) > img:nth-child(1) {
+
+    div.col:nth-child(2)>img:nth-child(1) {
         display: none;
     }
 
@@ -185,11 +210,11 @@ main .d-flex{
         display: flex;
         justify-content: center;
         align-items: center;
-    } 
+    }
 
     footer .container a img {
         width: 180px;
-    } 
+    }
 
     footer .container nav ul {
         display: flex;
@@ -198,39 +223,40 @@ main .d-flex{
 
     footer .container nav ul li {
         padding: 5px;
-    } 
+    }
 }
 
-@media (min-width: 426px) and (max-width: 768px) {   
+@media (min-width: 426px) and (max-width: 768px) {
     section.full {
         min-height: 50vh;
     }
 
-    section.full .container{
+    section.full .container {
         display: flex;
-         flex-wrap: wrap;
-        justify-content: center; 
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     article.evento {
         width: 650px;
     }
 
-    section.full:nth-child(3) > div:nth-child(1) .col {
+    section.full:nth-child(3)>div:nth-child(1) .col {
         width: 680px;
         padding-top: 30px;
     }
 
-    section.full:nth-child(3) > div:nth-child(1) .row {
+    section.full:nth-child(3)>div:nth-child(1) .row {
         display: flex;
         flex-direction: column;
     }
-    
+
     footer .container a img {
         width: 200px;
-    } 
+    }
 
     footer .container nav ul {
-        display: flex;   
-    } 
+        display: flex;
+        flex-direction: column;
+    }
 }
