@@ -258,5 +258,6 @@ footer nav ul li {
     footer .container nav ul {
         display: flex;
         flex-direction: column;
+
     }
 }
