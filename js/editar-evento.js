@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 //selecionando os elementos do formulario
+=======
+>>>>>>> 04efca4444a07c01d64c888ac3829f43b4ed3f0a
 const formSelector = document.querySelector('#form');
 const nameSelector = document.querySelector('#nome');
 const bannerSelector = document.querySelector('#banner');
@@ -8,17 +11,22 @@ const dateSelector = document.querySelector('#data');
 const capacitySelector = document.querySelector('#lotacao');
 
 const urlObject = new URLSearchParams(window.location.search);
+<<<<<<< HEAD
 //retirando o redimensionamento do textarea, e delimitando caracteres
 descriptionSelector.setAttribute("style", "resize:none");
 descriptionSelector.setAttribute("maxlength", "300");
 
 // Função que pega a informação da Api, transforma de json para objeto, e coloca nos inputs
+=======
+
+>>>>>>> 04efca4444a07c01d64c888ac3829f43b4ed3f0a
 function InputValues(data) {
     nameSelector.value = data.name;
     bannerSelector.value = data.poster;
     attractionsSelector.value = data.attractions.join(', ');
     descriptionSelector.value = data.description;
     dateSelector.value = data.scheduled.substring(0, 16);
+<<<<<<< HEAD
     // new Date(data.scheduled).toLocaleString("pt-br")
     capacitySelector.value = data.number_tickets;
 }
@@ -26,6 +34,16 @@ function InputValues(data) {
 fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + urlObject.get('id'), { "method": "GET" }).then(response => response.json()).then(data => InputValues(data)).catch(error => console.error(error));
 
 //Escutando o envento de enviar do formulario, e faz o caminho contrário de pegar as informações dos inputs, transformar em objeto para json e enviar para a api
+=======
+    capacitySelector.value = data.number_tickets;
+}
+
+fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + urlObject.get('id'),
+    { "method": "GET" }
+).then(response => response.json()).then(data => InputValues(data)).catch(error => console.error(error));
+
+
+>>>>>>> 04efca4444a07c01d64c888ac3829f43b4ed3f0a
 formSelector.addEventListener('submit', event => {
     event.preventDefault();
 
@@ -38,13 +56,29 @@ formSelector.addEventListener('submit', event => {
         "number_tickets": capacitySelector.value
     }
 
+<<<<<<< HEAD
     fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + urlObject.get('id'), {
             "method": "PUT",
             "headers": { "content-type": "application/json" },
             "body": JSON.stringify(body)
         }).then(response => console.log(response))
+=======
+    fetch('https://xp41-soundgarden-api.herokuapp.com/events/' + urlObject.get('id'),
+        {
+            "method": "PUT",
+            "headers": { "content-type": "application/json" },
+            "body": JSON.stringify(body)
+        }
+    ).then(response => console.log(response))
+>>>>>>> 04efca4444a07c01d64c888ac3829f43b4ed3f0a
         .then(() => alert("Evento editado com Sucesso"))
         .then(() => window.location.href = "admin.html")
         .catch(error => console.error(error));
 
+<<<<<<< HEAD
 });
+=======
+});
+
+
+>>>>>>> 04efca4444a07c01d64c888ac3829f43b4ed3f0a
